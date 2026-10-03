@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillGap – Find the skills missing from your resume</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand">Skill<span>Gap</span></div>
+      <h1>Know exactly which skills your resume is missing</h1>
+      <p>Upload your resume, pick a target job, and get a match score with a prioritised list of skills to learn.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card" id="inputCard">
+      <div class="grid2">
+        <div>
+          <h2>1. Your resume</h2>
+          <label class="drop" id="drop">
+            <input type="file" id="file" accept=".pdf,.docx,.txt" hidden />
+            <strong>Click to upload</strong> or drop a PDF, DOCX, TXT
+          </label>
+          <textarea id="resume" placeholder="…or paste your resume text here"></textarea>
+        </div>
+        <div>
+          <h2>2. Target job</h2>
+          <div class="tabs">
+            <button class="tab active" data-mode="role">Choose a role</button>
+            <button class="tab" data-mode="jd">Paste job description</button>
+          </div>
+          <div id="rolePane">
+            <select id="role"></select>
+            <p class="muted" id="roleDesc"></p>
+          </div>
+          <div id="jdPane" hidden>
+            <textarea id="jd" placeholder="Paste the job posting here. We'll detect the skills it asks for."></textarea>
+          </div>
+          <button class="primary" id="analyzeBtn">Analyze my resume</button>
+          <p class="error" id="error" role="alert"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="results" hidden>
+      <div class="result-head">
+        <div class="ring" id="ring"><span id="scoreNum">0</span><small>%</small></div>
+        <div>
+          <h2 id="resTitle"></h2>
+          <p class="muted" id="resSummary"></p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <h3 class="bad">Missing skills <span class="count" id="missCount"></span></h3>
+          <div id="missing"></div>
+        </div>
+        <div>
+          <h3 class="good">Skills you already have <span class="count" id="haveCount"></span></h3>
+          <div class="chips" id="matched"></div>
+          <h3 class="neutral">Other skills detected</h3>
+          <div class="chips" id="extra"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row-between">
+        <h2>Past analyses</h2>
+        <button class="link" id="refreshHistory">Refresh</button>
+      </div>
+      <div id="history" class="muted">No analyses yet.</div>
+    </section>
+  </main>
+
+  <footer>SkillGap · Flask + SQLite + vanilla JS</footer>
+  <script src="app.js"></script>
+</body>
+</html>
